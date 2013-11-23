@@ -208,14 +208,14 @@ typedef struct asn1_const_ctx_st
 #define ASN1_OBJECT_FLAG_CRITICAL	 0x02	/* critical x509v3 object id */
 #define ASN1_OBJECT_FLAG_DYNAMIC_STRINGS 0x04	/* internal use */
 #define ASN1_OBJECT_FLAG_DYNAMIC_DATA 	 0x08	/* internal use */
-typedef struct asn1_object_st
+struct asn1_object_st
 	{
 	const char *sn,*ln;
 	int nid;
 	int length;
 	const unsigned char *data;	/* data remains const after init */
 	int flags;	/* Should we free this one */
-	} ASN1_OBJECT;
+	};
 
 #define ASN1_STRING_FLAG_BITS_LEFT 0x08 /* Set if 0x07 has bits left value */
 /* This indicates that the ASN1_STRING is not a real value but just a place
@@ -235,7 +235,7 @@ typedef struct asn1_object_st
  */
 #define ASN1_STRING_FLAG_MSTRING 0x040 
 /* This is the base type that holds just about everything :-) */
-typedef struct asn1_string_st
+struct asn1_string_st
 	{
 	int length;
 	int type;
@@ -245,7 +245,7 @@ typedef struct asn1_string_st
 	 * input data has a non-zero 'unused bits' value, it will be
 	 * handled correctly */
 	long flags;
-	} ASN1_STRING;
+	};
 
 /* ASN1_ENCODING structure: this is used to save the received
  * encoding of an ASN1 type. This is useful to get round
@@ -293,7 +293,6 @@ DECLARE_STACK_OF(ASN1_STRING_TABLE)
  * see asn1t.h
  */
 typedef struct ASN1_TEMPLATE_st ASN1_TEMPLATE;
-typedef struct ASN1_ITEM_st ASN1_ITEM;
 typedef struct ASN1_TLC_st ASN1_TLC;
 /* This is just an opaque pointer */
 typedef struct ASN1_VALUE_st ASN1_VALUE;
@@ -840,7 +839,7 @@ int ASN1_INTEGER_cmp(const ASN1_INTEGER *x, const ASN1_INTEGER *y);
 
 DECLARE_ASN1_FUNCTIONS(ASN1_ENUMERATED)
 
-int ASN1_UTCTIME_check(ASN1_UTCTIME *a);
+int ASN1_UTCTIME_check(const ASN1_UTCTIME *a);
 ASN1_UTCTIME *ASN1_UTCTIME_set(ASN1_UTCTIME *s,time_t t);
 ASN1_UTCTIME *ASN1_UTCTIME_adj(ASN1_UTCTIME *s, time_t t,
 				int offset_day, long offset_sec);
@@ -850,11 +849,13 @@ int ASN1_UTCTIME_cmp_time_t(const ASN1_UTCTIME *s, time_t t);
 time_t ASN1_UTCTIME_get(const ASN1_UTCTIME *s);
 #endif
 
-int ASN1_GENERALIZEDTIME_check(ASN1_GENERALIZEDTIME *a);
+int ASN1_GENERALIZEDTIME_check(const ASN1_GENERALIZEDTIME *a);
 ASN1_GENERALIZEDTIME *ASN1_GENERALIZEDTIME_set(ASN1_GENERALIZEDTIME *s,time_t t);
 ASN1_GENERALIZEDTIME *ASN1_GENERALIZEDTIME_adj(ASN1_GENERALIZEDTIME *s,
 	     time_t t, int offset_day, long offset_sec);
 int ASN1_GENERALIZEDTIME_set_string(ASN1_GENERALIZEDTIME *s, const char *str);
+int ASN1_TIME_diff(int *pday, int *psec,
+			const ASN1_TIME *from, const ASN1_TIME *to);
 
 DECLARE_ASN1_FUNCTIONS(ASN1_OCTET_STRING)
 ASN1_OCTET_STRING *	ASN1_OCTET_STRING_dup(const ASN1_OCTET_STRING *a);
@@ -1194,6 +1195,7 @@ void ERR_load_ASN1_strings(void);
 #define ASN1_F_ASN1_ITEM_I2D_FP				 193
 #define ASN1_F_ASN1_ITEM_PACK				 198
 #define ASN1_F_ASN1_ITEM_SIGN				 195
+#define ASN1_F_ASN1_ITEM_SIGN_CTX			 220
 #define ASN1_F_ASN1_ITEM_UNPACK				 199
 #define ASN1_F_ASN1_ITEM_VERIFY				 197
 #define ASN1_F_ASN1_MBSTRING_NCOPY			 122
@@ -1266,6 +1268,7 @@ void ERR_load_ASN1_strings(void);
 #define ASN1_F_PKCS5_PBE2_SET_IV			 167
 #define ASN1_F_PKCS5_PBE_SET				 202
 #define ASN1_F_PKCS5_PBE_SET0_ALGOR			 215
+#define ASN1_F_PKCS5_PBKDF2_SET				 219
 #define ASN1_F_SMIME_READ_ASN1				 212
 #define ASN1_F_SMIME_TEXT				 213
 #define ASN1_F_X509_CINF_NEW				 168
@@ -1291,6 +1294,7 @@ void ERR_load_ASN1_strings(void);
 #define ASN1_R_BOOLEAN_IS_WRONG_LENGTH			 106
 #define ASN1_R_BUFFER_TOO_SMALL				 107
 #define ASN1_R_CIPHER_HAS_NO_OBJECT_IDENTIFIER		 108
+#define ASN1_R_CONTEXT_NOT_INITIALISED			 217
 #define ASN1_R_DATA_IS_WRONG				 109
 #define ASN1_R_DECODE_ERROR				 110
 #define ASN1_R_DECODING_ERROR				 111

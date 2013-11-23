@@ -82,7 +82,22 @@ my $smdir    = "smime-certs";
 my $halt_err = 1;
 
 my $badcmd = 0;
+my $no_ec;
 my $ossl8 = `$ossl_path version -v` =~ /0\.9\.8/;
+
+system ("$ossl_path no-ec >/dev/null");
+if ($? == 0)
+	{
+	$no_ec = 1;
+	}
+elsif ($? == 256)
+	{
+	$no_ec = 0;
+	}
+else
+	{
+	die "Error checking for EC support\n";
+	}
 
 my @smime_pkcs7_tests = (
 
@@ -341,6 +356,85 @@ my @smime_cms_comp_tests = (
 
 );
 
+my @smime_cms_param_tests = (
+    [
+        "signed content test streaming PEM format, RSA keys, PSS signature",
+        "-sign -in smcont.txt -outform PEM -nodetach"
+          . " -signer $smdir/smrsa1.pem -keyopt rsa_padding_mode:pss"
+	  . " -out test.cms",
+        "-verify -in test.cms -inform PEM "
+          . " \"-CAfile\" $smdir/smroot.pem -out smtst.txt"
+    ],
+
+    [
+        "signed content test streaming PEM format, RSA keys, PSS signature, no attributes",
+        "-sign -in smcont.txt -outform PEM -nodetach -noattr"
+          . " -signer $smdir/smrsa1.pem -keyopt rsa_padding_mode:pss"
+	  . " -out test.cms",
+        "-verify -in test.cms -inform PEM "
+          . " \"-CAfile\" $smdir/smroot.pem -out smtst.txt"
+    ],
+
+    [
+        "signed content test streaming PEM format, RSA keys, PSS signature, SHA384 MGF1",
+        "-sign -in smcont.txt -outform PEM -nodetach"
+          . " -signer $smdir/smrsa1.pem -keyopt rsa_padding_mode:pss"
+	  . " -keyopt rsa_mgf1_md:sha384 -out test.cms",
+        "-verify -in test.cms -inform PEM "
+          . " \"-CAfile\" $smdir/smroot.pem -out smtst.txt"
+    ],
+
+    [
+"enveloped content test streaming S/MIME format, OAEP default parameters",
+        "-encrypt -in smcont.txt"
+          . " -stream -out test.cms"
+          . " -recip $smdir/smrsa1.pem -keyopt rsa_padding_mode:oaep",
+        "-decrypt -recip $smdir/smrsa1.pem -in test.cms -out smtst.txt"
+    ],
+
+    [
+"enveloped content test streaming S/MIME format, OAEP SHA256",
+        "-encrypt -in smcont.txt"
+          . " -stream -out test.cms"
+          . " -recip $smdir/smrsa1.pem -keyopt rsa_padding_mode:oaep"
+	  . " -keyopt rsa_oaep_md:sha256",
+        "-decrypt -recip $smdir/smrsa1.pem -in test.cms -out smtst.txt"
+    ],
+
+    [
+"enveloped content test streaming S/MIME format, ECDH",
+        "-encrypt -in smcont.txt"
+          . " -stream -out test.cms"
+          . " -recip $smdir/smec1.pem",
+        "-decrypt -recip $smdir/smec1.pem -in test.cms -out smtst.txt"
+    ],
+
+    [
+"enveloped content test streaming S/MIME format, ECDH, AES128, SHA256 KDF",
+        "-encrypt -in smcont.txt"
+          . " -stream -out test.cms"
+          . " -recip $smdir/smec1.pem -aes128 -keyopt ecdh_kdf_md:sha256",
+        "-decrypt -recip $smdir/smec1.pem -in test.cms -out smtst.txt"
+    ],
+
+    [
+"enveloped content test streaming S/MIME format, ECDH, K-283, cofactor DH",
+        "-encrypt -in smcont.txt"
+          . " -stream -out test.cms"
+          . " -recip $smdir/smec2.pem -aes128"
+	  . " -keyopt ecdh_kdf_md:sha256 -keyopt ecdh_cofactor_mode:1",
+        "-decrypt -recip $smdir/smec2.pem -in test.cms -out smtst.txt"
+    ],
+
+    [
+"enveloped content test streaming S/MIME format, X9.42 DH",
+        "-encrypt -in smcont.txt"
+          . " -stream -out test.cms"
+          . " -recip $smdir/smdh.pem -aes128",
+        "-decrypt -recip $smdir/smdh.pem -in test.cms -out smtst.txt"
+    ]
+);
+
 print "CMS => PKCS#7 compatibility tests\n";
 
 run_smime_tests( \$badcmd, \@smime_pkcs7_tests, $cmscmd, $pk7cmd );
@@ -353,6 +447,9 @@ print "CMS <=> CMS consistency tests\n";
 
 run_smime_tests( \$badcmd, \@smime_pkcs7_tests, $cmscmd, $cmscmd );
 run_smime_tests( \$badcmd, \@smime_cms_tests,   $cmscmd, $cmscmd );
+
+print "CMS <=> CMS consistency tests, modified key parameters\n";
+run_smime_tests( \$badcmd, \@smime_cms_param_tests,   $cmscmd, $cmscmd );
 
 if ( `$ossl_path version -f` =~ /ZLIB/ ) {
     run_smime_tests( \$badcmd, \@smime_cms_comp_tests, $cmscmd, $cmscmd );
@@ -390,6 +487,11 @@ sub run_smime_tests {
 		$rscmd =~ s/-stream//;	
 		$rvcmd =~ s/-stream//;
 		}
+	if ($no_ec && $tnam =~ /ECDH/)
+		{
+		print "$tnam: skipped, EC disabled\n";
+		next;
+		}
         system("$scmd$rscmd$redir");
         if ($?) {
             print "$tnam: generation error\n";
@@ -415,8 +517,10 @@ sub run_smime_tests {
 }
 
 sub cmp_files {
+    use FileHandle;
     my ( $f1, $f2 ) = @_;
-    my ( $fp1, $fp2 );
+    my $fp1 = FileHandle->new();
+    my $fp2 = FileHandle->new();
 
     my ( $rd1, $rd2 );
 

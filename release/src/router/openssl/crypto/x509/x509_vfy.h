@@ -173,6 +173,12 @@ typedef struct X509_VERIFY_PARAM_st
 	int trust;		/* trust setting to check */
 	int depth;		/* Verify depth */
 	STACK_OF(ASN1_OBJECT) *policies;	/* Permissible policies */
+	unsigned char *host;	/* If not NULL hostname to match */
+	size_t hostlen;
+	unsigned char *email;	/* If not NULL email address to match */
+	size_t emaillen;
+	unsigned char *ip;	/* If not NULL IP address to match */
+	size_t iplen;		/* Length of IP address */
 	} X509_VERIFY_PARAM;
 
 DECLARE_STACK_OF(X509_VERIFY_PARAM)
@@ -354,6 +360,19 @@ void X509_STORE_CTX_set_depth(X509_STORE_CTX *ctx, int depth);
 #define		X509_V_ERR_UNSUPPORTED_NAME_SYNTAX		53
 #define		X509_V_ERR_CRL_PATH_VALIDATION_ERROR		54
 
+/* Suite B mode algorithm violation */
+#define		X509_V_ERR_SUITE_B_INVALID_VERSION		56
+#define		X509_V_ERR_SUITE_B_INVALID_ALGORITHM		57
+#define		X509_V_ERR_SUITE_B_INVALID_CURVE		58
+#define		X509_V_ERR_SUITE_B_INVALID_SIGNATURE_ALGORITHM	59
+#define		X509_V_ERR_SUITE_B_LOS_NOT_ALLOWED		60
+#define		X509_V_ERR_SUITE_B_CANNOT_SIGN_P_384_WITH_P_256	61
+
+/* Host, email and IP check errors */
+#define		X509_V_ERR_HOSTNAME_MISMATCH			62
+#define		X509_V_ERR_EMAIL_MISMATCH			63
+#define		X509_V_ERR_IP_ADDRESS_MISMATCH			64
+
 /* The application is not happy */
 #define		X509_V_ERR_APPLICATION_VERIFICATION		50
 
@@ -389,7 +408,17 @@ void X509_STORE_CTX_set_depth(X509_STORE_CTX *ctx, int depth);
 #define X509_V_FLAG_USE_DELTAS			0x2000
 /* Check selfsigned CA signature */
 #define X509_V_FLAG_CHECK_SS_SIGNATURE		0x4000
+/* Use trusted store first */
+#define X509_V_FLAG_TRUSTED_FIRST		0x8000
+/* Suite B 128 bit only mode: not normally used */
+#define X509_V_FLAG_SUITEB_128_LOS_ONLY		0x10000
+/* Suite B 192 bit only mode */
+#define X509_V_FLAG_SUITEB_192_LOS		0x20000
+/* Suite B 128 bit mode allowing 192 bit algorithms */
+#define X509_V_FLAG_SUITEB_128_LOS		0x30000
 
+/* Allow partial chains if at least one certificate is in trusted store */
+#define X509_V_FLAG_PARTIAL_CHAIN		0x80000
 
 #define X509_VP_FLAG_DEFAULT			0x1
 #define X509_VP_FLAG_OVERWRITE			0x2
@@ -422,6 +451,9 @@ int X509_STORE_set1_param(X509_STORE *ctx, X509_VERIFY_PARAM *pm);
 void X509_STORE_set_verify_cb(X509_STORE *ctx,
 				  int (*verify_cb)(int, X509_STORE_CTX *));
 
+void X509_STORE_set_lookup_crls_cb(X509_STORE *ctx,
+		STACK_OF(X509_CRL)* (*cb)(X509_STORE_CTX *ctx, X509_NAME *nm));
+
 X509_STORE_CTX *X509_STORE_CTX_new(void);
 
 int X509_STORE_CTX_get1_issuer(X509 **issuer, X509_STORE_CTX *ctx, X509 *x);
@@ -431,6 +463,8 @@ int X509_STORE_CTX_init(X509_STORE_CTX *ctx, X509_STORE *store,
 			 X509 *x509, STACK_OF(X509) *chain);
 void X509_STORE_CTX_trusted_stack(X509_STORE_CTX *ctx, STACK_OF(X509) *sk);
 void X509_STORE_CTX_cleanup(X509_STORE_CTX *ctx);
+
+X509_STORE *X509_STORE_CTX_get0_store(X509_STORE_CTX *ctx);
 
 X509_LOOKUP *X509_STORE_add_lookup(X509_STORE *v, X509_LOOKUP_METHOD *m);
 
@@ -526,6 +560,15 @@ int X509_VERIFY_PARAM_add0_policy(X509_VERIFY_PARAM *param,
 						ASN1_OBJECT *policy);
 int X509_VERIFY_PARAM_set1_policies(X509_VERIFY_PARAM *param, 
 					STACK_OF(ASN1_OBJECT) *policies);
+
+int X509_VERIFY_PARAM_set1_host(X509_VERIFY_PARAM *param,
+				const unsigned char *name, size_t namelen);
+int X509_VERIFY_PARAM_set1_email(X509_VERIFY_PARAM *param,
+				const unsigned char *email, size_t emaillen);
+int X509_VERIFY_PARAM_set1_ip(X509_VERIFY_PARAM *param,
+					const unsigned char *ip, size_t iplen);
+int X509_VERIFY_PARAM_set1_ip_asc(X509_VERIFY_PARAM *param, const char *ipasc);
+
 int X509_VERIFY_PARAM_get_depth(const X509_VERIFY_PARAM *param);
 
 int X509_VERIFY_PARAM_add0_table(X509_VERIFY_PARAM *param);

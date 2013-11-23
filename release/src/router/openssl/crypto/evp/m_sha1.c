@@ -63,10 +63,11 @@
 
 #include <openssl/evp.h>
 #include <openssl/objects.h>
-#include <openssl/x509.h>
+#include <openssl/sha.h>
 #ifndef OPENSSL_NO_RSA
 #include <openssl/rsa.h>
 #endif
+
 
 static int init(EVP_MD_CTX *ctx)
 	{ return SHA1_Init(ctx->md_data); }
@@ -202,3 +203,4 @@ static const EVP_MD sha512_md=
 const EVP_MD *EVP_sha512(void)
 	{ return(&sha512_md); }
 #endif	/* ifndef OPENSSL_NO_SHA512 */
+

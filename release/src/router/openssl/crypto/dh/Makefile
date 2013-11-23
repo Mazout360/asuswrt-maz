@@ -18,9 +18,9 @@ APPS=
 
 LIB=$(TOP)/libcrypto.a
 LIBSRC= dh_asn1.c dh_gen.c dh_key.c dh_lib.c dh_check.c dh_err.c dh_depr.c \
-	dh_ameth.c dh_pmeth.c dh_prn.c
+	dh_ameth.c dh_pmeth.c dh_prn.c dh_rfc5114.c dh_kdf.c
 LIBOBJ= dh_asn1.o dh_gen.o dh_key.o dh_lib.o dh_check.o dh_err.o dh_depr.o \
-	dh_ameth.o dh_pmeth.o dh_prn.o
+	dh_ameth.o dh_pmeth.o dh_prn.o dh_rfc5114.o dh_kdf.o
 
 SRC= $(LIBSRC)
 
@@ -178,3 +178,11 @@ dh_prn.o: ../../include/openssl/objects.h ../../include/openssl/opensslconf.h
 dh_prn.o: ../../include/openssl/opensslv.h ../../include/openssl/ossl_typ.h
 dh_prn.o: ../../include/openssl/safestack.h ../../include/openssl/stack.h
 dh_prn.o: ../../include/openssl/symhacks.h ../cryptlib.h dh_prn.c
+dh_rfc5114.o: ../../e_os.h ../../include/openssl/bio.h
+dh_rfc5114.o: ../../include/openssl/bn.h ../../include/openssl/buffer.h
+dh_rfc5114.o: ../../include/openssl/crypto.h ../../include/openssl/dh.h
+dh_rfc5114.o: ../../include/openssl/e_os2.h ../../include/openssl/err.h
+dh_rfc5114.o: ../../include/openssl/lhash.h ../../include/openssl/opensslconf.h
+dh_rfc5114.o: ../../include/openssl/opensslv.h ../../include/openssl/ossl_typ.h
+dh_rfc5114.o: ../../include/openssl/safestack.h ../../include/openssl/stack.h
+dh_rfc5114.o: ../../include/openssl/symhacks.h ../cryptlib.h dh_rfc5114.c

@@ -62,12 +62,12 @@
  * [including the GNU Public Licence.]
  */
 
-#define NUM_NID 893
-#define NUM_SN 886
-#define NUM_LN 886
-#define NUM_OBJ 840
+#define NUM_NID 948
+#define NUM_SN 941
+#define NUM_LN 941
+#define NUM_OBJ 883
 
-static const unsigned char lvalues[5824]={
+static const unsigned char lvalues[6188]={
 0x00,                                        /* [  0] OBJ_undef */
 0x2A,0x86,0x48,0x86,0xF7,0x0D,               /* [  1] OBJ_rsadsi */
 0x2A,0x86,0x48,0x86,0xF7,0x0D,0x01,          /* [  7] OBJ_pkcs */
@@ -908,6 +908,49 @@ static const unsigned char lvalues[5824]={
 0x55,0x04,0x34,                              /* [5814] OBJ_supportedAlgorithms */
 0x55,0x04,0x35,                              /* [5817] OBJ_deltaRevocationList */
 0x55,0x04,0x36,                              /* [5820] OBJ_dmdName */
+0x2A,0x86,0x48,0x86,0xF7,0x0D,0x01,0x09,0x10,0x03,0x09,/* [5823] OBJ_id_alg_PWRI_KEK */
+0x60,0x86,0x48,0x01,0x65,0x03,0x04,0x01,0x06,/* [5834] OBJ_aes_128_gcm */
+0x60,0x86,0x48,0x01,0x65,0x03,0x04,0x01,0x07,/* [5843] OBJ_aes_128_ccm */
+0x60,0x86,0x48,0x01,0x65,0x03,0x04,0x01,0x08,/* [5852] OBJ_id_aes128_wrap_pad */
+0x60,0x86,0x48,0x01,0x65,0x03,0x04,0x01,0x1A,/* [5861] OBJ_aes_192_gcm */
+0x60,0x86,0x48,0x01,0x65,0x03,0x04,0x01,0x1B,/* [5870] OBJ_aes_192_ccm */
+0x60,0x86,0x48,0x01,0x65,0x03,0x04,0x01,0x1C,/* [5879] OBJ_id_aes192_wrap_pad */
+0x60,0x86,0x48,0x01,0x65,0x03,0x04,0x01,0x2E,/* [5888] OBJ_aes_256_gcm */
+0x60,0x86,0x48,0x01,0x65,0x03,0x04,0x01,0x2F,/* [5897] OBJ_aes_256_ccm */
+0x60,0x86,0x48,0x01,0x65,0x03,0x04,0x01,0x30,/* [5906] OBJ_id_aes256_wrap_pad */
+0x2A,0x83,0x08,0x8C,0x9A,0x4B,0x3D,0x01,0x01,0x03,0x02,/* [5915] OBJ_id_camellia128_wrap */
+0x2A,0x83,0x08,0x8C,0x9A,0x4B,0x3D,0x01,0x01,0x03,0x03,/* [5926] OBJ_id_camellia192_wrap */
+0x2A,0x83,0x08,0x8C,0x9A,0x4B,0x3D,0x01,0x01,0x03,0x04,/* [5937] OBJ_id_camellia256_wrap */
+0x55,0x1D,0x25,0x00,                         /* [5948] OBJ_anyExtendedKeyUsage */
+0x2A,0x86,0x48,0x86,0xF7,0x0D,0x01,0x01,0x08,/* [5952] OBJ_mgf1 */
+0x2A,0x86,0x48,0x86,0xF7,0x0D,0x01,0x01,0x0A,/* [5961] OBJ_rsassaPss */
+0x2A,0x86,0x48,0x86,0xF7,0x0D,0x01,0x01,0x07,/* [5970] OBJ_rsaesOaep */
+0x2A,0x86,0x48,0xCE,0x3E,0x02,0x01,          /* [5979] OBJ_dhpublicnumber */
+0x2B,0x24,0x03,0x03,0x02,0x08,0x01,0x01,0x01,/* [5986] OBJ_brainpoolP160r1 */
+0x2B,0x24,0x03,0x03,0x02,0x08,0x01,0x01,0x02,/* [5995] OBJ_brainpoolP160t1 */
+0x2B,0x24,0x03,0x03,0x02,0x08,0x01,0x01,0x03,/* [6004] OBJ_brainpoolP192r1 */
+0x2B,0x24,0x03,0x03,0x02,0x08,0x01,0x01,0x04,/* [6013] OBJ_brainpoolP192t1 */
+0x2B,0x24,0x03,0x03,0x02,0x08,0x01,0x01,0x05,/* [6022] OBJ_brainpoolP224r1 */
+0x2B,0x24,0x03,0x03,0x02,0x08,0x01,0x01,0x06,/* [6031] OBJ_brainpoolP224t1 */
+0x2B,0x24,0x03,0x03,0x02,0x08,0x01,0x01,0x07,/* [6040] OBJ_brainpoolP256r1 */
+0x2B,0x24,0x03,0x03,0x02,0x08,0x01,0x01,0x08,/* [6049] OBJ_brainpoolP256t1 */
+0x2B,0x24,0x03,0x03,0x02,0x08,0x01,0x01,0x09,/* [6058] OBJ_brainpoolP320r1 */
+0x2B,0x24,0x03,0x03,0x02,0x08,0x01,0x01,0x0A,/* [6067] OBJ_brainpoolP320t1 */
+0x2B,0x24,0x03,0x03,0x02,0x08,0x01,0x01,0x0B,/* [6076] OBJ_brainpoolP384r1 */
+0x2B,0x24,0x03,0x03,0x02,0x08,0x01,0x01,0x0C,/* [6085] OBJ_brainpoolP384t1 */
+0x2B,0x24,0x03,0x03,0x02,0x08,0x01,0x01,0x0D,/* [6094] OBJ_brainpoolP512r1 */
+0x2B,0x24,0x03,0x03,0x02,0x08,0x01,0x01,0x0E,/* [6103] OBJ_brainpoolP512t1 */
+0x2A,0x86,0x48,0x86,0xF7,0x0D,0x01,0x01,0x09,/* [6112] OBJ_pSpecified */
+0x2B,0x81,0x05,0x10,0x86,0x48,0x3F,0x00,0x02,/* [6121] OBJ_dhSinglePass_stdDH_sha1kdf_scheme */
+0x2B,0x81,0x04,0x01,0x0B,0x00,               /* [6130] OBJ_dhSinglePass_stdDH_sha224kdf_scheme */
+0x2B,0x81,0x04,0x01,0x0B,0x01,               /* [6136] OBJ_dhSinglePass_stdDH_sha256kdf_scheme */
+0x2B,0x81,0x04,0x01,0x0B,0x02,               /* [6142] OBJ_dhSinglePass_stdDH_sha384kdf_scheme */
+0x2B,0x81,0x04,0x01,0x0B,0x03,               /* [6148] OBJ_dhSinglePass_stdDH_sha512kdf_scheme */
+0x2B,0x81,0x05,0x10,0x86,0x48,0x3F,0x00,0x03,/* [6154] OBJ_dhSinglePass_cofactorDH_sha1kdf_scheme */
+0x2B,0x81,0x04,0x01,0x0E,0x00,               /* [6163] OBJ_dhSinglePass_cofactorDH_sha224kdf_scheme */
+0x2B,0x81,0x04,0x01,0x0E,0x01,               /* [6169] OBJ_dhSinglePass_cofactorDH_sha256kdf_scheme */
+0x2B,0x81,0x04,0x01,0x0E,0x02,               /* [6175] OBJ_dhSinglePass_cofactorDH_sha384kdf_scheme */
+0x2B,0x81,0x04,0x01,0x0E,0x03,               /* [6181] OBJ_dhSinglePass_cofactorDH_sha512kdf_scheme */
 };
 
 static const ASN1_OBJECT nid_objs[NUM_NID]={
@@ -2351,28 +2394,136 @@ static const ASN1_OBJECT nid_objs[NUM_NID]={
 {"deltaRevocationList","deltaRevocationList",NID_deltaRevocationList,
 	3,&(lvalues[5817]),0},
 {"dmdName","dmdName",NID_dmdName,3,&(lvalues[5820]),0},
+{"id-alg-PWRI-KEK","id-alg-PWRI-KEK",NID_id_alg_PWRI_KEK,11,
+	&(lvalues[5823]),0},
+{"CMAC","cmac",NID_cmac,0,NULL,0},
+{"id-aes128-GCM","aes-128-gcm",NID_aes_128_gcm,9,&(lvalues[5834]),0},
+{"id-aes128-CCM","aes-128-ccm",NID_aes_128_ccm,9,&(lvalues[5843]),0},
+{"id-aes128-wrap-pad","id-aes128-wrap-pad",NID_id_aes128_wrap_pad,9,
+	&(lvalues[5852]),0},
+{"id-aes192-GCM","aes-192-gcm",NID_aes_192_gcm,9,&(lvalues[5861]),0},
+{"id-aes192-CCM","aes-192-ccm",NID_aes_192_ccm,9,&(lvalues[5870]),0},
+{"id-aes192-wrap-pad","id-aes192-wrap-pad",NID_id_aes192_wrap_pad,9,
+	&(lvalues[5879]),0},
+{"id-aes256-GCM","aes-256-gcm",NID_aes_256_gcm,9,&(lvalues[5888]),0},
+{"id-aes256-CCM","aes-256-ccm",NID_aes_256_ccm,9,&(lvalues[5897]),0},
+{"id-aes256-wrap-pad","id-aes256-wrap-pad",NID_id_aes256_wrap_pad,9,
+	&(lvalues[5906]),0},
+{"AES-128-CTR","aes-128-ctr",NID_aes_128_ctr,0,NULL,0},
+{"AES-192-CTR","aes-192-ctr",NID_aes_192_ctr,0,NULL,0},
+{"AES-256-CTR","aes-256-ctr",NID_aes_256_ctr,0,NULL,0},
+{"id-camellia128-wrap","id-camellia128-wrap",NID_id_camellia128_wrap,
+	11,&(lvalues[5915]),0},
+{"id-camellia192-wrap","id-camellia192-wrap",NID_id_camellia192_wrap,
+	11,&(lvalues[5926]),0},
+{"id-camellia256-wrap","id-camellia256-wrap",NID_id_camellia256_wrap,
+	11,&(lvalues[5937]),0},
+{"anyExtendedKeyUsage","Any Extended Key Usage",
+	NID_anyExtendedKeyUsage,4,&(lvalues[5948]),0},
+{"MGF1","mgf1",NID_mgf1,9,&(lvalues[5952]),0},
+{"RSASSA-PSS","rsassaPss",NID_rsassaPss,9,&(lvalues[5961]),0},
+{"AES-128-XTS","aes-128-xts",NID_aes_128_xts,0,NULL,0},
+{"AES-256-XTS","aes-256-xts",NID_aes_256_xts,0,NULL,0},
+{"RC4-HMAC-MD5","rc4-hmac-md5",NID_rc4_hmac_md5,0,NULL,0},
+{"AES-128-CBC-HMAC-SHA1","aes-128-cbc-hmac-sha1",
+	NID_aes_128_cbc_hmac_sha1,0,NULL,0},
+{"AES-192-CBC-HMAC-SHA1","aes-192-cbc-hmac-sha1",
+	NID_aes_192_cbc_hmac_sha1,0,NULL,0},
+{"AES-256-CBC-HMAC-SHA1","aes-256-cbc-hmac-sha1",
+	NID_aes_256_cbc_hmac_sha1,0,NULL,0},
+{"RSAES-OAEP","rsaesOaep",NID_rsaesOaep,9,&(lvalues[5970]),0},
+{"dhpublicnumber","X9.42 DH",NID_dhpublicnumber,7,&(lvalues[5979]),0},
+{"brainpoolP160r1","brainpoolP160r1",NID_brainpoolP160r1,9,
+	&(lvalues[5986]),0},
+{"brainpoolP160t1","brainpoolP160t1",NID_brainpoolP160t1,9,
+	&(lvalues[5995]),0},
+{"brainpoolP192r1","brainpoolP192r1",NID_brainpoolP192r1,9,
+	&(lvalues[6004]),0},
+{"brainpoolP192t1","brainpoolP192t1",NID_brainpoolP192t1,9,
+	&(lvalues[6013]),0},
+{"brainpoolP224r1","brainpoolP224r1",NID_brainpoolP224r1,9,
+	&(lvalues[6022]),0},
+{"brainpoolP224t1","brainpoolP224t1",NID_brainpoolP224t1,9,
+	&(lvalues[6031]),0},
+{"brainpoolP256r1","brainpoolP256r1",NID_brainpoolP256r1,9,
+	&(lvalues[6040]),0},
+{"brainpoolP256t1","brainpoolP256t1",NID_brainpoolP256t1,9,
+	&(lvalues[6049]),0},
+{"brainpoolP320r1","brainpoolP320r1",NID_brainpoolP320r1,9,
+	&(lvalues[6058]),0},
+{"brainpoolP320t1","brainpoolP320t1",NID_brainpoolP320t1,9,
+	&(lvalues[6067]),0},
+{"brainpoolP384r1","brainpoolP384r1",NID_brainpoolP384r1,9,
+	&(lvalues[6076]),0},
+{"brainpoolP384t1","brainpoolP384t1",NID_brainpoolP384t1,9,
+	&(lvalues[6085]),0},
+{"brainpoolP512r1","brainpoolP512r1",NID_brainpoolP512r1,9,
+	&(lvalues[6094]),0},
+{"brainpoolP512t1","brainpoolP512t1",NID_brainpoolP512t1,9,
+	&(lvalues[6103]),0},
+{"PSPECIFIED","pSpecified",NID_pSpecified,9,&(lvalues[6112]),0},
+{"dhSinglePass-stdDH-sha1kdf-scheme",
+	"dhSinglePass-stdDH-sha1kdf-scheme",
+	NID_dhSinglePass_stdDH_sha1kdf_scheme,9,&(lvalues[6121]),0},
+{"dhSinglePass-stdDH-sha224kdf-scheme",
+	"dhSinglePass-stdDH-sha224kdf-scheme",
+	NID_dhSinglePass_stdDH_sha224kdf_scheme,6,&(lvalues[6130]),0},
+{"dhSinglePass-stdDH-sha256kdf-scheme",
+	"dhSinglePass-stdDH-sha256kdf-scheme",
+	NID_dhSinglePass_stdDH_sha256kdf_scheme,6,&(lvalues[6136]),0},
+{"dhSinglePass-stdDH-sha384kdf-scheme",
+	"dhSinglePass-stdDH-sha384kdf-scheme",
+	NID_dhSinglePass_stdDH_sha384kdf_scheme,6,&(lvalues[6142]),0},
+{"dhSinglePass-stdDH-sha512kdf-scheme",
+	"dhSinglePass-stdDH-sha512kdf-scheme",
+	NID_dhSinglePass_stdDH_sha512kdf_scheme,6,&(lvalues[6148]),0},
+{"dhSinglePass-cofactorDH-sha1kdf-scheme",
+	"dhSinglePass-cofactorDH-sha1kdf-scheme",
+	NID_dhSinglePass_cofactorDH_sha1kdf_scheme,9,&(lvalues[6154]),0},
+{"dhSinglePass-cofactorDH-sha224kdf-scheme",
+	"dhSinglePass-cofactorDH-sha224kdf-scheme",
+	NID_dhSinglePass_cofactorDH_sha224kdf_scheme,6,&(lvalues[6163]),0},
+{"dhSinglePass-cofactorDH-sha256kdf-scheme",
+	"dhSinglePass-cofactorDH-sha256kdf-scheme",
+	NID_dhSinglePass_cofactorDH_sha256kdf_scheme,6,&(lvalues[6169]),0},
+{"dhSinglePass-cofactorDH-sha384kdf-scheme",
+	"dhSinglePass-cofactorDH-sha384kdf-scheme",
+	NID_dhSinglePass_cofactorDH_sha384kdf_scheme,6,&(lvalues[6175]),0},
+{"dhSinglePass-cofactorDH-sha512kdf-scheme",
+	"dhSinglePass-cofactorDH-sha512kdf-scheme",
+	NID_dhSinglePass_cofactorDH_sha512kdf_scheme,6,&(lvalues[6181]),0},
+{"dh-std-kdf","dh-std-kdf",NID_dh_std_kdf,0,NULL,0},
+{"dh-cofactor-kdf","dh-cofactor-kdf",NID_dh_cofactor_kdf,0,NULL,0},
 };
 
 static const unsigned int sn_objs[NUM_SN]={
 364,	/* "AD_DVCS" */
 419,	/* "AES-128-CBC" */
+916,	/* "AES-128-CBC-HMAC-SHA1" */
 421,	/* "AES-128-CFB" */
 650,	/* "AES-128-CFB1" */
 653,	/* "AES-128-CFB8" */
+904,	/* "AES-128-CTR" */
 418,	/* "AES-128-ECB" */
 420,	/* "AES-128-OFB" */
+913,	/* "AES-128-XTS" */
 423,	/* "AES-192-CBC" */
+917,	/* "AES-192-CBC-HMAC-SHA1" */
 425,	/* "AES-192-CFB" */
 651,	/* "AES-192-CFB1" */
 654,	/* "AES-192-CFB8" */
+905,	/* "AES-192-CTR" */
 422,	/* "AES-192-ECB" */
 424,	/* "AES-192-OFB" */
 427,	/* "AES-256-CBC" */
+918,	/* "AES-256-CBC-HMAC-SHA1" */
 429,	/* "AES-256-CFB" */
 652,	/* "AES-256-CFB1" */
 655,	/* "AES-256-CFB8" */
+906,	/* "AES-256-CTR" */
 426,	/* "AES-256-ECB" */
 428,	/* "AES-256-OFB" */
+914,	/* "AES-256-XTS" */
 91,	/* "BF-CBC" */
 93,	/* "BF-CFB" */
 92,	/* "BF-ECB" */
@@ -2400,6 +2551,7 @@ static const unsigned int sn_objs[NUM_SN]={
 110,	/* "CAST5-CFB" */
 109,	/* "CAST5-ECB" */
 111,	/* "CAST5-OFB" */
+894,	/* "CMAC" */
 13,	/* "CN" */
 141,	/* "CRLReason" */
 417,	/* "CSPName" */
@@ -2451,6 +2603,7 @@ static const unsigned int sn_objs[NUM_SN]={
  4,	/* "MD5" */
 114,	/* "MD5-SHA1" */
 95,	/* "MDC2" */
+911,	/* "MGF1" */
 388,	/* "Mail" */
 393,	/* "NULL" */
 404,	/* "NULL" */
@@ -2479,6 +2632,7 @@ static const unsigned int sn_objs[NUM_SN]={
 69,	/* "PBKDF2" */
 162,	/* "PBMAC1" */
 127,	/* "PKIX" */
+935,	/* "PSPECIFIED" */
 98,	/* "RC2-40-CBC" */
 166,	/* "RC2-64-CBC" */
 37,	/* "RC2-CBC" */
@@ -2487,6 +2641,7 @@ static const unsigned int sn_objs[NUM_SN]={
 40,	/* "RC2-OFB" */
  5,	/* "RC4" */
 97,	/* "RC4-40" */
+915,	/* "RC4-HMAC-MD5" */
 120,	/* "RC5-CBC" */
 122,	/* "RC5-CFB" */
 121,	/* "RC5-ECB" */
@@ -2507,6 +2662,8 @@ static const unsigned int sn_objs[NUM_SN]={
 668,	/* "RSA-SHA256" */
 669,	/* "RSA-SHA384" */
 670,	/* "RSA-SHA512" */
+919,	/* "RSAES-OAEP" */
+912,	/* "RSASSA-PSS" */
 777,	/* "SEED-CBC" */
 779,	/* "SEED-CFB" */
 776,	/* "SEED-ECB" */
@@ -2540,6 +2697,7 @@ static const unsigned int sn_objs[NUM_SN]={
 363,	/* "ad_timestamping" */
 376,	/* "algorithm" */
 405,	/* "ansi-X9-62" */
+910,	/* "anyExtendedKeyUsage" */
 746,	/* "anyPolicy" */
 370,	/* "archiveCutoff" */
 484,	/* "associatedDomain" */
@@ -2551,6 +2709,20 @@ static const unsigned int sn_objs[NUM_SN]={
 87,	/* "basicConstraints" */
 365,	/* "basicOCSPResponse" */
 285,	/* "biometricInfo" */
+921,	/* "brainpoolP160r1" */
+922,	/* "brainpoolP160t1" */
+923,	/* "brainpoolP192r1" */
+924,	/* "brainpoolP192t1" */
+925,	/* "brainpoolP224r1" */
+926,	/* "brainpoolP224t1" */
+927,	/* "brainpoolP256r1" */
+928,	/* "brainpoolP256t1" */
+929,	/* "brainpoolP320r1" */
+930,	/* "brainpoolP320t1" */
+931,	/* "brainpoolP384r1" */
+932,	/* "brainpoolP384t1" */
+933,	/* "brainpoolP512r1" */
+934,	/* "brainpoolP512t1" */
 494,	/* "buildingName" */
 860,	/* "businessCategory" */
 691,	/* "c2onb191v4" */
@@ -2605,7 +2777,20 @@ static const unsigned int sn_objs[NUM_SN]={
 891,	/* "deltaRevocationList" */
 107,	/* "description" */
 871,	/* "destinationIndicator" */
+947,	/* "dh-cofactor-kdf" */
+946,	/* "dh-std-kdf" */
 28,	/* "dhKeyAgreement" */
+941,	/* "dhSinglePass-cofactorDH-sha1kdf-scheme" */
+942,	/* "dhSinglePass-cofactorDH-sha224kdf-scheme" */
+943,	/* "dhSinglePass-cofactorDH-sha256kdf-scheme" */
+944,	/* "dhSinglePass-cofactorDH-sha384kdf-scheme" */
+945,	/* "dhSinglePass-cofactorDH-sha512kdf-scheme" */
+936,	/* "dhSinglePass-stdDH-sha1kdf-scheme" */
+937,	/* "dhSinglePass-stdDH-sha224kdf-scheme" */
+938,	/* "dhSinglePass-stdDH-sha256kdf-scheme" */
+939,	/* "dhSinglePass-stdDH-sha384kdf-scheme" */
+940,	/* "dhSinglePass-stdDH-sha512kdf-scheme" */
+920,	/* "dhpublicnumber" */
 382,	/* "directory" */
 887,	/* "distinguishedName" */
 892,	/* "dmdName" */
@@ -2716,14 +2901,27 @@ static const unsigned int sn_objs[NUM_SN]={
 357,	/* "id-aca-group" */
 358,	/* "id-aca-role" */
 176,	/* "id-ad" */
+896,	/* "id-aes128-CCM" */
+895,	/* "id-aes128-GCM" */
 788,	/* "id-aes128-wrap" */
+897,	/* "id-aes128-wrap-pad" */
+899,	/* "id-aes192-CCM" */
+898,	/* "id-aes192-GCM" */
 789,	/* "id-aes192-wrap" */
+900,	/* "id-aes192-wrap-pad" */
+902,	/* "id-aes256-CCM" */
+901,	/* "id-aes256-GCM" */
 790,	/* "id-aes256-wrap" */
+903,	/* "id-aes256-wrap-pad" */
 262,	/* "id-alg" */
+893,	/* "id-alg-PWRI-KEK" */
 323,	/* "id-alg-des40" */
 326,	/* "id-alg-dh-pop" */
 325,	/* "id-alg-dh-sig-hmac-sha1" */
 324,	/* "id-alg-noSignature" */
+907,	/* "id-camellia128-wrap" */
+908,	/* "id-camellia192-wrap" */
+909,	/* "id-camellia256-wrap" */
 268,	/* "id-cct" */
 361,	/* "id-cct-PKIData" */
 362,	/* "id-cct-PKIResponse" */
@@ -3246,6 +3444,7 @@ static const unsigned int ln_objs[NUM_LN]={
 363,	/* "AD Time Stamping" */
 405,	/* "ANSI X9.62" */
 368,	/* "Acceptable OCSP Responses" */
+910,	/* "Any Extended Key Usage" */
 664,	/* "Any language" */
 177,	/* "Authority Information Access" */
 365,	/* "Basic OCSP Response" */
@@ -3375,6 +3574,7 @@ static const unsigned int ln_objs[NUM_LN]={
 85,	/* "X509v3 Subject Alternative Name" */
 769,	/* "X509v3 Subject Directory Attributes" */
 82,	/* "X509v3 Subject Key Identifier" */
+920,	/* "X9.42 DH" */
 184,	/* "X9.57" */
 185,	/* "X9.57 CM ?" */
 478,	/* "aRecord" */
@@ -3386,23 +3586,37 @@ static const unsigned int ln_objs[NUM_LN]={
 364,	/* "ad dvcs" */
 606,	/* "additional verification" */
 419,	/* "aes-128-cbc" */
+916,	/* "aes-128-cbc-hmac-sha1" */
+896,	/* "aes-128-ccm" */
 421,	/* "aes-128-cfb" */
 650,	/* "aes-128-cfb1" */
 653,	/* "aes-128-cfb8" */
+904,	/* "aes-128-ctr" */
 418,	/* "aes-128-ecb" */
+895,	/* "aes-128-gcm" */
 420,	/* "aes-128-ofb" */
+913,	/* "aes-128-xts" */
 423,	/* "aes-192-cbc" */
+917,	/* "aes-192-cbc-hmac-sha1" */
+899,	/* "aes-192-ccm" */
 425,	/* "aes-192-cfb" */
 651,	/* "aes-192-cfb1" */
 654,	/* "aes-192-cfb8" */
+905,	/* "aes-192-ctr" */
 422,	/* "aes-192-ecb" */
+898,	/* "aes-192-gcm" */
 424,	/* "aes-192-ofb" */
 427,	/* "aes-256-cbc" */
+918,	/* "aes-256-cbc-hmac-sha1" */
+902,	/* "aes-256-ccm" */
 429,	/* "aes-256-cfb" */
 652,	/* "aes-256-cfb1" */
 655,	/* "aes-256-cfb8" */
+906,	/* "aes-256-ctr" */
 426,	/* "aes-256-ecb" */
+901,	/* "aes-256-gcm" */
 428,	/* "aes-256-ofb" */
+914,	/* "aes-256-xts" */
 376,	/* "algorithm" */
 484,	/* "associatedDomain" */
 485,	/* "associatedName" */
@@ -3412,6 +3626,20 @@ static const unsigned int ln_objs[NUM_LN]={
 93,	/* "bf-cfb" */
 92,	/* "bf-ecb" */
 94,	/* "bf-ofb" */
+921,	/* "brainpoolP160r1" */
+922,	/* "brainpoolP160t1" */
+923,	/* "brainpoolP192r1" */
+924,	/* "brainpoolP192t1" */
+925,	/* "brainpoolP224r1" */
+926,	/* "brainpoolP224t1" */
+927,	/* "brainpoolP256r1" */
+928,	/* "brainpoolP256t1" */
+929,	/* "brainpoolP320r1" */
+930,	/* "brainpoolP320t1" */
+931,	/* "brainpoolP384r1" */
+932,	/* "brainpoolP384t1" */
+933,	/* "brainpoolP512r1" */
+934,	/* "brainpoolP512t1" */
 494,	/* "buildingName" */
 860,	/* "businessCategory" */
 691,	/* "c2onb191v4" */
@@ -3467,6 +3695,7 @@ static const unsigned int ln_objs[NUM_LN]={
 407,	/* "characteristic-two-field" */
 395,	/* "clearance" */
 633,	/* "cleartext track 2" */
+894,	/* "cmac" */
 13,	/* "commonName" */
 513,	/* "content types" */
 50,	/* "contentType" */
@@ -3502,7 +3731,19 @@ static const unsigned int ln_objs[NUM_LN]={
 107,	/* "description" */
 871,	/* "destinationIndicator" */
 80,	/* "desx-cbc" */
+947,	/* "dh-cofactor-kdf" */
+946,	/* "dh-std-kdf" */
 28,	/* "dhKeyAgreement" */
+941,	/* "dhSinglePass-cofactorDH-sha1kdf-scheme" */
+942,	/* "dhSinglePass-cofactorDH-sha224kdf-scheme" */
+943,	/* "dhSinglePass-cofactorDH-sha256kdf-scheme" */
+944,	/* "dhSinglePass-cofactorDH-sha384kdf-scheme" */
+945,	/* "dhSinglePass-cofactorDH-sha512kdf-scheme" */
+936,	/* "dhSinglePass-stdDH-sha1kdf-scheme" */
+937,	/* "dhSinglePass-stdDH-sha224kdf-scheme" */
+938,	/* "dhSinglePass-stdDH-sha256kdf-scheme" */
+939,	/* "dhSinglePass-stdDH-sha384kdf-scheme" */
+940,	/* "dhSinglePass-stdDH-sha512kdf-scheme" */
 11,	/* "directory services (X.500)" */
 378,	/* "directory services - algorithms" */
 887,	/* "distinguishedName" */
@@ -3602,13 +3843,20 @@ static const unsigned int ln_objs[NUM_LN]={
 358,	/* "id-aca-role" */
 176,	/* "id-ad" */
 788,	/* "id-aes128-wrap" */
+897,	/* "id-aes128-wrap-pad" */
 789,	/* "id-aes192-wrap" */
+900,	/* "id-aes192-wrap-pad" */
 790,	/* "id-aes256-wrap" */
+903,	/* "id-aes256-wrap-pad" */
 262,	/* "id-alg" */
+893,	/* "id-alg-PWRI-KEK" */
 323,	/* "id-alg-des40" */
 326,	/* "id-alg-dh-pop" */
 325,	/* "id-alg-dh-sig-hmac-sha1" */
 324,	/* "id-alg-noSignature" */
+907,	/* "id-camellia128-wrap" */
+908,	/* "id-camellia192-wrap" */
+909,	/* "id-camellia256-wrap" */
 268,	/* "id-cct" */
 361,	/* "id-cct-PKIData" */
 362,	/* "id-cct-PKIResponse" */
@@ -3806,6 +4054,7 @@ static const unsigned int ln_objs[NUM_LN]={
 602,	/* "merchant initiated auth" */
 514,	/* "message extensions" */
 51,	/* "messageDigest" */
+911,	/* "mgf1" */
 506,	/* "mime-mhs-bodies" */
 505,	/* "mime-mhs-headings" */
 488,	/* "mobileTelephoneNumber" */
@@ -3818,6 +4067,7 @@ static const unsigned int ln_objs[NUM_LN]={
 18,	/* "organizationalUnitName" */
 475,	/* "otherMailbox" */
 876,	/* "owner" */
+935,	/* "pSpecified" */
 489,	/* "pagerTelephoneNumber" */
 782,	/* "password based MAC" */
 374,	/* "path" */
@@ -3889,6 +4139,7 @@ static const unsigned int ln_objs[NUM_LN]={
 40,	/* "rc2-ofb" */
  5,	/* "rc4" */
 97,	/* "rc4-40" */
+915,	/* "rc4-hmac-md5" */
 120,	/* "rc5-cbc" */
 122,	/* "rc5-cfb" */
 121,	/* "rc5-ecb" */
@@ -3905,6 +4156,8 @@ static const unsigned int ln_objs[NUM_LN]={
  6,	/* "rsaEncryption" */
 644,	/* "rsaOAEPEncryptionSET" */
 377,	/* "rsaSignature" */
+919,	/* "rsaesOaep" */
+912,	/* "rsassaPss" */
 124,	/* "run length compression" */
 482,	/* "sOARecord" */
 155,	/* "safeContentsBag" */
@@ -4254,6 +4507,7 @@ static const unsigned int obj_objs[NUM_OBJ]={
 96,	/* OBJ_mdc2WithRSA                  2 5 8 3 100 */
 95,	/* OBJ_mdc2                         2 5 8 3 101 */
 746,	/* OBJ_any_policy                   2 5 29 32 0 */
+910,	/* OBJ_anyExtendedKeyUsage          2 5 29 37 0 */
 519,	/* OBJ_setct_PANData                2 23 42 0 0 */
 520,	/* OBJ_setct_PANToken               2 23 42 0 1 */
 521,	/* OBJ_setct_PANOnly                2 23 42 0 2 */
@@ -4457,6 +4711,14 @@ static const unsigned int obj_objs[NUM_OBJ]={
 505,	/* OBJ_mime_mhs_headings            1 3 6 1 7 1 1 */
 506,	/* OBJ_mime_mhs_bodies              1 3 6 1 7 1 2 */
 119,	/* OBJ_ripemd160WithRSA             1 3 36 3 3 1 2 */
+937,	/* OBJ_dhSinglePass_stdDH_sha224kdf_scheme 1 3 132 1 11 0 */
+938,	/* OBJ_dhSinglePass_stdDH_sha256kdf_scheme 1 3 132 1 11 1 */
+939,	/* OBJ_dhSinglePass_stdDH_sha384kdf_scheme 1 3 132 1 11 2 */
+940,	/* OBJ_dhSinglePass_stdDH_sha512kdf_scheme 1 3 132 1 11 3 */
+942,	/* OBJ_dhSinglePass_cofactorDH_sha224kdf_scheme 1 3 132 1 14 0 */
+943,	/* OBJ_dhSinglePass_cofactorDH_sha256kdf_scheme 1 3 132 1 14 1 */
+944,	/* OBJ_dhSinglePass_cofactorDH_sha384kdf_scheme 1 3 132 1 14 2 */
+945,	/* OBJ_dhSinglePass_cofactorDH_sha512kdf_scheme 1 3 132 1 14 3 */
 631,	/* OBJ_setAttr_GenCryptgrm          2 23 42 3 3 3 1 */
 632,	/* OBJ_setAttr_T2Enc                2 23 42 3 3 4 1 */
 633,	/* OBJ_setAttr_T2cleartxt           2 23 42 3 3 4 2 */
@@ -4505,6 +4767,7 @@ static const unsigned int obj_objs[NUM_OBJ]={
 416,	/* OBJ_ecdsa_with_SHA1              1 2 840 10045 4 1 */
 791,	/* OBJ_ecdsa_with_Recommended       1 2 840 10045 4 2 */
 792,	/* OBJ_ecdsa_with_Specified         1 2 840 10045 4 3 */
+920,	/* OBJ_dhpublicnumber               1 2 840 10046 2 1 */
 258,	/* OBJ_id_pkix_mod                  1 3 6 1 5 5 7 0 */
 175,	/* OBJ_id_pe                        1 3 6 1 5 5 7 1 */
 259,	/* OBJ_id_qt                        1 3 6 1 5 5 7 2 */
@@ -4720,6 +4983,10 @@ static const unsigned int obj_objs[NUM_OBJ]={
  8,	/* OBJ_md5WithRSAEncryption         1 2 840 113549 1 1 4 */
 65,	/* OBJ_sha1WithRSAEncryption        1 2 840 113549 1 1 5 */
 644,	/* OBJ_rsaOAEPEncryptionSET         1 2 840 113549 1 1 6 */
+919,	/* OBJ_rsaesOaep                    1 2 840 113549 1 1 7 */
+911,	/* OBJ_mgf1                         1 2 840 113549 1 1 8 */
+935,	/* OBJ_pSpecified                   1 2 840 113549 1 1 9 */
+912,	/* OBJ_rsassaPss                    1 2 840 113549 1 1 10 */
 668,	/* OBJ_sha256WithRSAEncryption      1 2 840 113549 1 1 11 */
 669,	/* OBJ_sha384WithRSAEncryption      1 2 840 113549 1 1 12 */
 670,	/* OBJ_sha512WithRSAEncryption      1 2 840 113549 1 1 13 */
@@ -4780,21 +5047,46 @@ static const unsigned int obj_objs[NUM_OBJ]={
 373,	/* OBJ_id_pkix_OCSP_valid           1 3 6 1 5 5 7 48 1 9 */
 374,	/* OBJ_id_pkix_OCSP_path            1 3 6 1 5 5 7 48 1 10 */
 375,	/* OBJ_id_pkix_OCSP_trustRoot       1 3 6 1 5 5 7 48 1 11 */
+921,	/* OBJ_brainpoolP160r1              1 3 36 3 3 2 8 1 1 1 */
+922,	/* OBJ_brainpoolP160t1              1 3 36 3 3 2 8 1 1 2 */
+923,	/* OBJ_brainpoolP192r1              1 3 36 3 3 2 8 1 1 3 */
+924,	/* OBJ_brainpoolP192t1              1 3 36 3 3 2 8 1 1 4 */
+925,	/* OBJ_brainpoolP224r1              1 3 36 3 3 2 8 1 1 5 */
+926,	/* OBJ_brainpoolP224t1              1 3 36 3 3 2 8 1 1 6 */
+927,	/* OBJ_brainpoolP256r1              1 3 36 3 3 2 8 1 1 7 */
+928,	/* OBJ_brainpoolP256t1              1 3 36 3 3 2 8 1 1 8 */
+929,	/* OBJ_brainpoolP320r1              1 3 36 3 3 2 8 1 1 9 */
+930,	/* OBJ_brainpoolP320t1              1 3 36 3 3 2 8 1 1 10 */
+931,	/* OBJ_brainpoolP384r1              1 3 36 3 3 2 8 1 1 11 */
+932,	/* OBJ_brainpoolP384t1              1 3 36 3 3 2 8 1 1 12 */
+933,	/* OBJ_brainpoolP512r1              1 3 36 3 3 2 8 1 1 13 */
+934,	/* OBJ_brainpoolP512t1              1 3 36 3 3 2 8 1 1 14 */
+936,	/* OBJ_dhSinglePass_stdDH_sha1kdf_scheme 1 3 133 16 840 63 0 2 */
+941,	/* OBJ_dhSinglePass_cofactorDH_sha1kdf_scheme 1 3 133 16 840 63 0 3 */
 418,	/* OBJ_aes_128_ecb                  2 16 840 1 101 3 4 1 1 */
 419,	/* OBJ_aes_128_cbc                  2 16 840 1 101 3 4 1 2 */
 420,	/* OBJ_aes_128_ofb128               2 16 840 1 101 3 4 1 3 */
 421,	/* OBJ_aes_128_cfb128               2 16 840 1 101 3 4 1 4 */
 788,	/* OBJ_id_aes128_wrap               2 16 840 1 101 3 4 1 5 */
+895,	/* OBJ_aes_128_gcm                  2 16 840 1 101 3 4 1 6 */
+896,	/* OBJ_aes_128_ccm                  2 16 840 1 101 3 4 1 7 */
+897,	/* OBJ_id_aes128_wrap_pad           2 16 840 1 101 3 4 1 8 */
 422,	/* OBJ_aes_192_ecb                  2 16 840 1 101 3 4 1 21 */
 423,	/* OBJ_aes_192_cbc                  2 16 840 1 101 3 4 1 22 */
 424,	/* OBJ_aes_192_ofb128               2 16 840 1 101 3 4 1 23 */
 425,	/* OBJ_aes_192_cfb128               2 16 840 1 101 3 4 1 24 */
 789,	/* OBJ_id_aes192_wrap               2 16 840 1 101 3 4 1 25 */
+898,	/* OBJ_aes_192_gcm                  2 16 840 1 101 3 4 1 26 */
+899,	/* OBJ_aes_192_ccm                  2 16 840 1 101 3 4 1 27 */
+900,	/* OBJ_id_aes192_wrap_pad           2 16 840 1 101 3 4 1 28 */
 426,	/* OBJ_aes_256_ecb                  2 16 840 1 101 3 4 1 41 */
 427,	/* OBJ_aes_256_cbc                  2 16 840 1 101 3 4 1 42 */
 428,	/* OBJ_aes_256_ofb128               2 16 840 1 101 3 4 1 43 */
 429,	/* OBJ_aes_256_cfb128               2 16 840 1 101 3 4 1 44 */
 790,	/* OBJ_id_aes256_wrap               2 16 840 1 101 3 4 1 45 */
+901,	/* OBJ_aes_256_gcm                  2 16 840 1 101 3 4 1 46 */
+902,	/* OBJ_aes_256_ccm                  2 16 840 1 101 3 4 1 47 */
+903,	/* OBJ_id_aes256_wrap_pad           2 16 840 1 101 3 4 1 48 */
 672,	/* OBJ_sha256                       2 16 840 1 101 3 4 2 1 */
 673,	/* OBJ_sha384                       2 16 840 1 101 3 4 2 2 */
 674,	/* OBJ_sha512                       2 16 840 1 101 3 4 2 3 */
@@ -4901,6 +5193,9 @@ static const unsigned int obj_objs[NUM_OBJ]={
 751,	/* OBJ_camellia_128_cbc             1 2 392 200011 61 1 1 1 2 */
 752,	/* OBJ_camellia_192_cbc             1 2 392 200011 61 1 1 1 3 */
 753,	/* OBJ_camellia_256_cbc             1 2 392 200011 61 1 1 1 4 */
+907,	/* OBJ_id_camellia128_wrap          1 2 392 200011 61 1 1 3 2 */
+908,	/* OBJ_id_camellia192_wrap          1 2 392 200011 61 1 1 3 3 */
+909,	/* OBJ_id_camellia256_wrap          1 2 392 200011 61 1 1 3 4 */
 196,	/* OBJ_id_smime_mod_cms             1 2 840 113549 1 9 16 0 1 */
 197,	/* OBJ_id_smime_mod_ess             1 2 840 113549 1 9 16 0 2 */
 198,	/* OBJ_id_smime_mod_oid             1 2 840 113549 1 9 16 0 3 */
@@ -4956,6 +5251,7 @@ static const unsigned int obj_objs[NUM_OBJ]={
 246,	/* OBJ_id_smime_alg_CMS3DESwrap     1 2 840 113549 1 9 16 3 6 */
 247,	/* OBJ_id_smime_alg_CMSRC2wrap      1 2 840 113549 1 9 16 3 7 */
 125,	/* OBJ_zlib_compression             1 2 840 113549 1 9 16 3 8 */
+893,	/* OBJ_id_alg_PWRI_KEK              1 2 840 113549 1 9 16 3 9 */
 248,	/* OBJ_id_smime_cd_ldap             1 2 840 113549 1 9 16 4 1 */
 249,	/* OBJ_id_smime_spq_ets_sqt_uri     1 2 840 113549 1 9 16 5 1 */
 250,	/* OBJ_id_smime_spq_ets_sqt_unotice 1 2 840 113549 1 9 16 5 2 */

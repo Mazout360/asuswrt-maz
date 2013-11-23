@@ -177,6 +177,7 @@ int ECPKParameters_print(BIO *bp, const EC_GROUP *x, int off)
 		{
 		/* the curve parameter are given by an asn1 OID */
 		int nid;
+		const char *nname;
 
 		if (!BIO_indent(bp, off, 128))
 			goto err;
@@ -189,6 +190,14 @@ int ECPKParameters_print(BIO *bp, const EC_GROUP *x, int off)
 			goto err;
 		if (BIO_printf(bp, "\n") <= 0)
 			goto err;
+		nname = EC_curve_nid2nist(nid);
+		if (nname)
+			{
+			if (!BIO_indent(bp, off, 128))
+				goto err;
+			if (BIO_printf(bp, "NIST CURVE: %s\n", nname) <= 0)
+				goto err;
+			}
 		}
 	else
 		{
@@ -207,7 +216,7 @@ int ECPKParameters_print(BIO *bp, const EC_GROUP *x, int off)
 			reason = ERR_R_MALLOC_FAILURE;
 			goto err;
 			}
-
+#ifndef OPENSSL_NO_EC2M
 		if (is_char_two)
 			{
 			if (!EC_GROUP_get_curve_GF2m(x, p, a, b, ctx))
@@ -217,6 +226,7 @@ int ECPKParameters_print(BIO *bp, const EC_GROUP *x, int off)
 				}
 			}
 		else /* prime field */
+#endif
 			{
 			if (!EC_GROUP_get_curve_GFp(x, p, a, b, ctx))
 				{
