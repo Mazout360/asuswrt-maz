@@ -246,6 +246,17 @@ static unsigned int default_startup(unsigned int irq)
 }
 
 /*
+ * default shutdown function
+ */
+static void default_shutdown(unsigned int irq)
+{
+	struct irq_desc *desc = irq_desc + irq;
+
+	desc->chip->mask(irq);
+	desc->status |= IRQ_MASKED;
+}
+
+/*
  * Fixup enable/disable function pointers
  */
 void irq_chip_set_defaults(struct irq_chip *chip)
@@ -257,7 +268,8 @@ void irq_chip_set_defaults(struct irq_chip *chip)
 	if (!chip->startup)
 		chip->startup = default_startup;
 	if (!chip->shutdown)
-		chip->shutdown = chip->disable;
+		chip->shutdown = chip->disable != default_disable ?
+                       chip->disable : default_shutdown;
 	if (!chip->name)
 		chip->name = chip->typename;
 	if (!chip->end)
