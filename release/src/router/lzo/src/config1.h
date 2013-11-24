@@ -55,6 +55,10 @@
 #define LZO_NO_R1 1
 #include "config1a.h"
 
+#ifndef LZO_ALIGNED_OK_4
+#define LZO_ALIGNED_OK_4 1
+#endif
+
 #endif /* already included */
 
 
